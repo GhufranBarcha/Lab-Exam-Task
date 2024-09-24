@@ -1,3 +1,6 @@
-FROM hello-world
+# Use a minimal base image
+FROM alpine:latest
 
-CMD ["echo","THis is running a docker file pulled from github"]
+# Set the command to run your custom echo command
+CMD ["echo", "This is running a docker file pulled from github"]
+
