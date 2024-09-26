@@ -1,7 +1,54 @@
-version: '3.8'
+
+version: '3'
 
 services:
-  hello:
-    image: alpine
-    command: echo "Hello, World!"
+  backend:
+    image: ghufranbarcha/fullstack:backend
+    ports:
+      - "5000:5000"
+    networks:
+      - my-network-1
 
+  frontend:
+    image: ghufranbarcha/fullstack:frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - my-network-1
+    depends_on:
+      - backend
+
+networks:
+  my-network-1:
+    driver: bridge
+
+
+### if I want build the file again
+
+
+# services:
+#   backend:
+#     image: flask-backend:1.0
+#     build:
+#       context: ./backend
+#       dockerfile: Dockerfile
+#     ports:
+#       - "5000:5000"
+#     networks:
+#       - my-network-1
+
+#   frontend:
+#     image: frontend-react:1.0
+#     build:
+#       context: ./frontend
+#       dockerfile: Dockerfile
+#     ports:
+#       - "5173:5173"
+#     networks:
+#       - my-network-1
+#     depends_on:
+#       - backend
+
+# networks:
+#   my-network-1:
+#     driver: bridge
